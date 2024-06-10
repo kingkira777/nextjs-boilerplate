@@ -1,16 +1,25 @@
-import { ReactElement } from "react"
-import Layout from "./components/layout"
- 
-export default function Page() {
+
+
+
+const Home = (props:any) => {
   return (
-      <>HOME!</>
+      <>
+        <div>Client Render</div>
+        <>{props.message}</>
+      </>
   )
 }
+
+
+
+// This gets called on every request
+export async function getServerSideProps() {
  
-Page.getLayout = function getLayout(page: ReactElement) {
-  return (
-    <Layout>
-      {page}
-    </Layout>
-  )
+  // Pass data to the page via props
+  return { props: { message : 'This is render in server side' } }
 }
+
+
+export default Home;
+
+
